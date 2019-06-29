@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		.div01
+		{
+			/*左边距*/
+			margin-left: 500px;
+			/*定边距*/
+			margin-top: 1300px;
+		}
+		#div01
+		{
+			/*绝对定位*/
+			position:   fixed;
+			/*左边距*/
+			left: 100px;
+			/*顶边距*/
+			top: 10px;
+			border: 1px solid;
+			width: 100px;
+			height: 100px;
+			background-color: beige;
+		}
+	</style>
+	
+	<body>
+		<!--style写在开始标签是内嵌样式，
+			内嵌样式优先于外部样式
+			class类样式
+		-->
+		<div style="width: 350px;
+			border: 1px solid;
+			border-radius: 20px;"
+			class="div01">
+			<!--label文本标签-->
+			<label>用户登录</label>
+			<!--br换行标签-->
+			<br>
+			<!--分割线-->
+			<hr> 
+			<!--表格 width宽 border边框
+				height高 align居中
+			-->
+			<table width="350px"
+				border="0px"
+				height="150px"
+				align="center">
+				<!--tr行th/td列-->
+				<tr>
+					<th>账号</th>
+					<td>
+						<input type="text" 
+							id="name"/>
+					</td>
+				</tr>
+				<tr>
+					<th>密码</th>
+					<td>
+						<input type="password"
+							id="password" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<input type="checkbox" 
+							id="ck01"/>
+						<font color="gray"
+							style="font-size: 15px;">
+							自动登录
+						</font>	
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td>
+						<input type="button" 
+							value="登录"/>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#">注册</a>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+		
+		<div id="div01">
+			
+		</div>
+	</body>
+</html>

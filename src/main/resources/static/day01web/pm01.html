@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body id="body01">
+		<!--form表单-->
+		<form>
+		<!--下拉框-->
+		<select size="3">
+			<option>A型血</option>
+			<option selected="selected">B型血</option>
+			<option>AB型血</option>
+			<option>O型血</option>
+		</select>
+		<!--多行文本框 rows行 列cols-->
+		<textarea rows="5" cols="50"></textarea>
+		<!--单选按钮-->
+		<input type="radio" name="sex" 
+			checked="checked"/>男
+		<input type="radio" name="sex"/>女
+		<!--日期-->
+		生日<input type="date" />
+		
+		<!--图片标签-->
+		<img src="img/stumalllogo.png" 
+			width="50px"
+			height="50px"/>
+		<!--图片按钮onclick鼠标点击事件-->
+		<input type="image" 
+			src="img/bg1.jpg"
+			width="100px"
+			height="100px"
+			onclick="fun()"/>
+		<!--文件上传-->
+		<input type="file"
+			 multiple="multiple"/>
+			 
+		<!--计数step步长value初始值max最大值-->
+		<input type="number" 
+			style="width: 35px;"
+			step="2"
+			value="18"
+			max="100"/>岁
+		<!--电子邮件-->
+		<input type="email" />
+		<!--提交按钮-->
+		<input type="submit" />
+		<!--重置按钮-->
+		<input type="reset" />
+		<!--调色盒onchange值改变事件-->
+		<input type="color" onchange="ch()"
+			id="co"/>
+		<!--鼠标移动事件-->	
+		<input type="button" value="确认" 
+			id="but" onmousemove="mo()"
+			onmouseout="moves()"/>
+		</form>
+	</body>
+</html>
+
+
+<script type="text/javascript">
+//javascript 简称js脚本	
+//function方法关键字 fun()方法名称
+function fun()
+{
+	for(var i=0;i<=20;i++)
+	{
+		//window.open("index.html");
+	}
+}
+
+function ch()
+{
+	//body页面
+	var body=document.
+		getElementById("body01");
+	//获取调色盒对象
+	var co=document.
+		getElementById("co");
+	//设置页面的颜色
+	body.style.backgroundColor=co.value;
+}
+
+function mo()
+{
+	var but=document.
+		getElementById("but");
+		
+	but.style.backgroundColor=
+		"rgb(201,224,203)";
+}
+function moves()
+{
+	var but=document.
+		getElementById("but");
+		
+	but.style.backgroundColor="";
+}
+</script>

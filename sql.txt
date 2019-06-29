@@ -1,0 +1,158 @@
+CREATE DATABASE tedu_store;
+USE tedu_store;
+
+CREATE TABLE t_user (
+    uid INT AUTO_INCREMENT COMMENT '用户id',
+    username VARCHAR(20) UNIQUE NOT NULL COMMENT '用户名',
+    password CHAR(32) NOT NULL COMMENT '密码',
+    salt CHAR(36) COMMENT '盐值',
+    gender INT COMMENT '性别，0-女性，1-男性',
+    phone VARCHAR(20)  COMMENT '电话',
+    email VARCHAR(50) COMMENT '邮箱',
+    avatar VARCHAR(50) COMMENT '头像',
+    is_delete INT COMMENT '是否删除，0-未删除，1-已删除',
+    created_user VARCHAR(20) COMMENT '创建执行人',
+    created_time DATETIME COMMENT '创建时间',
+    modified_user VARCHAR(20) COMMENT '修改执行人',
+    modified_time DATETIME COMMENT '修改时间',
+    PRIMARY KEY (uid)
+) DEFAULT CHARSET=UTF8;
+
+CREATE TABLE t_order (
+    oid INT AUTO_INCREMENT COMMENT 'id',
+    image VARCHAR(500) COMMENT '商品图片',
+    name VARCHAR(20) COMMENT '收货人',
+    phone VARCHAR(20) COMMENT '收货电话',
+    address VARCHAR(100) COMMENT '收货地址',
+    title VARCHAR(100) COMMENT '商品标题',
+    status INT COMMENT '订单状态：0-未支付，1-已支付，2-已取消…………',
+    price BIGINT COMMENT '商品总价',
+    order_time DATETIME COMMENT '下单时间',
+    pay_time DATETIME COMMENT '支付时间',
+    created_user VARCHAR(20) COMMENT '创建执行人',
+    created_time DATETIME COMMENT '创建时间',
+    modified_user VARCHAR(20) COMMENT '修改执行人',
+    modified_time DATETIME COMMENT '修改时间',
+    PRIMARY KEY(oid)
+) DEFAULT CHARSET=UTF8;
+
+CREATE TABLE t_order_item (
+    id INT AUTO_INCREMENT COMMENT 'id',
+    oid INT COMMENT '归属的订单id',
+    gid BIGINT COMMENT '商品id',
+    title VARCHAR(100) COMMENT '商品名称',
+    image VARCHAR(500) COMMENT '商品图片',
+    price BIGINT COMMENT '商品单价',
+    num INT COMMENT '购买数量',
+    created_user VARCHAR(20) COMMENT '创建执行人',
+    created_time DATETIME COMMENT '创建时间',
+    modified_user VARCHAR(20) COMMENT '修改执行人',
+    modified_time DATETIME COMMENT '修改时间',
+    PRIMARY KEY(id)
+) DEFAULT CHARSET=UTF8;
+
+CREATE TABLE  t_order_item_sub(
+    id INT AUTO_INCREMENT COMMENT 'id',
+    t_order_item_id int   COMMENT '父类id',
+    image VARCHAR(500) COMMENT '商品图片',
+    PRIMARY KEY(id)
+)
+DEFAULT CHARSET=UTF8;
+
+CREATE TABLE t_cart (
+    cid INT AUTO_INCREMENT COMMENT '数据id',
+    uid INT NOT NULL COMMENT '归属用户的id',
+    gid BIGINT NOT NULL COMMENT '商品的id',
+    num INT NOT NULL COMMENT '商品的数量',
+    created_user VARCHAR(20) COMMENT '创建执行人',
+    created_time DATETIME COMMENT '创建时间',
+    modified_user VARCHAR(20) COMMENT '修改执行人',
+    modified_time DATETIME COMMENT '修改时间',
+    PRIMARY KEY(cid)
+) DEFAULT CHARSET=UTF8;
+
+INSERT INTO t_order_item ( oid, gid, title, image, price, num, created_user, created_time)
+VALUES ( 1, 1, "旋仔一号", "http://myinterface.xuanzai.top/getPicture", 9.9, 1, "xuanzai", "2019-06-26 15:24:53");
+
+INSERT INTO t_order_item ( oid, gid, title, image, price, num, created_user, created_time)
+VALUES ( 1, 1, "旋仔二号", "http://myinterface.xuanzai.top/getPicture",  19.9, 1, "xuanzai", "2019-06-26 15:24:53");
+
+INSERT INTO t_order_item ( oid, gid, title, image, price, num, created_user, created_time)
+VALUES ( 1, 1, "旋仔三号", "http://myinterface.xuanzai.top/getPicture", 99, 1, "xuanzai", "2019-06-26 15:24:53");
+
+INSERT INTO t_order_item ( oid, gid, title, image, price, num, created_user, created_time)
+VALUES ( 1, 1, "旋仔四号", "http://myinterface.xuanzai.top/getPicture", 199, 1, "xuanzai", "2019-06-26 15:24:53");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (1, "http://myinterface.xuanzai.top/getPicture?type=头像&id=1");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (1, "http://myinterface.xuanzai.top/getPicture?type=头像&id=2");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (1, "http://myinterface.xuanzai.top/getPicture?type=头像&id=3");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (1, "http://myinterface.xuanzai.top/getPicture?type=头像&id=4");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (1, "http://myinterface.xuanzai.top/getPicture?type=头像&id=5");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (2, "http://myinterface.xuanzai.top/getPicture?type=头像&id=6");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (2, "http://myinterface.xuanzai.top/getPicture?type=头像&id=7");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (2, "http://myinterface.xuanzai.top/getPicture?type=头像&id=8");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (2, "http://myinterface.xuanzai.top/getPicture?type=头像&id=9");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (2, "http://myinterface.xuanzai.top/getPicture?type=头像&id=10");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (3, "http://myinterface.xuanzai.top/getPicture?type=头像&id=11");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (3, "http://myinterface.xuanzai.top/getPicture?type=头像&id=12");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (3, "http://myinterface.xuanzai.top/getPicture?type=头像&id=13");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (3, "http://myinterface.xuanzai.top/getPicture?type=头像&id=14");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (3, "http://myinterface.xuanzai.top/getPicture?type=头像&id=15");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (4, "http://myinterface.xuanzai.top/getPicture?type=头像&id=16");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (4, "http://myinterface.xuanzai.top/getPicture?type=头像&id=17");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (4, "http://myinterface.xuanzai.top/getPicture?type=头像&id=18");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (4, "http://myinterface.xuanzai.top/getPicture?type=头像&id=19");
+
+INSERT INTO t_order_item_sub (t_order_item_id, image)
+VALUES (4, "http://myinterface.xuanzai.top/getPicture?type=头像&id=20");
+
+INSERT INTO t_order (title, image, name, phone, address, status, price, created_user, created_time)
+VALUES ('旋仔1号', "http://myinterface.xuanzai.top/getPicture?type=头像&id=1", 1, 1, 1, 1, 9.9, 'xuanzai', "2019-06-26 15:24:53");
+
+INSERT INTO t_order (title, image, name, phone, address, status, price, created_user, created_time)
+VALUES ('旋仔2号', "http://myinterface.xuanzai.top/getPicture?type=头像&id=6", 1, 1, 1, 1, 19.9, 'xuanzai', "2019-06-26 15:24:53");
+
+INSERT INTO t_order (title, image, name, phone, address, status, price, created_user, created_time)
+VALUES ('旋仔3号', "http://myinterface.xuanzai.top/getPicture?type=头像&id=11", 1, 1, 1, 1, 99, 'xuanzai', "2019-06-26 15:24:53");
+
+INSERT INTO t_order (title, image, name, phone, address, status, price, created_user, created_time)
+VALUES ('旋仔4号', "http://myinterface.xuanzai.top/getPicture?type=头像&id=16", 1, 1, 1, 1, 199, 'xuanzai', "2019-06-26 15:24:53");
+
+
